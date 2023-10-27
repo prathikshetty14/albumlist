@@ -43,52 +43,46 @@ function AlbumManager() {
     // Function to toggle edit mode for an album
     const toggleEdit = (albumId) => {
         if (albumId === selectedAlbumId) {
-          // When entering edit mode, set the newAlbumTitle to the title of the selected album
-          setNewAlbumTitle(albums.find((album) => album.id === albumId).title);
+            updateAlbum();
         } else {
-          setNewAlbumTitle(''); // Clear the newAlbumTitle when exiting edit mode
+            setSelectedAlbumId(albumId);
         }
-        setSelectedAlbumId(albumId);
         setIsEditing(!isEditing);
-      };
-      
+    };
 
-    // Function to update an album   
-      const updateAlbum = () => {
+
+    // Function to update an album
+    const updateAlbum = () => {
         if (selectedAlbumId !== null) {
-          const updatedAlbum = albums.find((album) => album.id === selectedAlbumId);
-          updatedAlbum.title = newAlbumTitle; // Update the title in the selected album
-          // Perform a PUT request to update the album name (dummy request)
-          fetch(`https://jsonplaceholder.typicode.com/albums/${selectedAlbumId}`, {
-            method: 'PUT',
-            body: JSON.stringify({
-              title: newAlbumTitle,
-            }),
-            headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-            },
-          })
-            .then((response) => response.json())
-            .then(() => {
-              // Update the album's name in the state
-              setAlbums((prevAlbums) =>
-                prevAlbums.map((album) =>
-                  album.id === selectedAlbumId ? updatedAlbum : album
-                )
-              );
-      
-              // Clear the input and reset the selected album
-              setNewAlbumTitle('');
-              setSelectedAlbumId(null);
+
+            // Find the selected album by its ID
+            const updatedAlbum = albums.find((album) => album.id === selectedAlbumId);
+
+            // Perform a PUT request to update the album name
+            fetch(`https://jsonplaceholder.typicode.com/albums/${selectedAlbumId}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                title: newAlbumTitle,
+                }),
+                headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+                },
             })
-            .then(() => {
-              // After the update is complete, exit the editing section
-              toggleEdit(null);
-            });
+                .then((response) => response.json())
+                .then(() => {
+                    // Update the album's name in the state
+                    setAlbums((prevAlbums) =>
+                        prevAlbums.map((album) =>
+                        album.id === selectedAlbumId ? { ...album, title: newAlbumTitle } : album
+                        )
+                    );
+
+                    // Clear the input and reset the selected album
+                    setNewAlbumTitle('');
+                    setSelectedAlbumId(null);
+                });
         }
-      };
-      
-      
+    };
 
    
     // Function to delete an album    
