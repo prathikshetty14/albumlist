@@ -1,0 +1,80 @@
+/* Dark Theme */
+body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  h1 img{
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  input[type="text"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #2e2e2e;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2e2e2e;
+    padding: 10px;
+    margin: 15px 50px;
+    border-radius: 5px;
+  }
+  
+  /* Adjust styles for update and delete buttons */
+  li span button {
+    margin: 2px;
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  li span{
+    margin-left: 10px;
+  }
+  
+  li button:hover {
+    background-color: #0056b3;
+  }
+  
